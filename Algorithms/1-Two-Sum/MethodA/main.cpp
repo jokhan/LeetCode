@@ -10,26 +10,38 @@ using namespace std;
 
 class Solution {
 public:
+	//**********枚举法***********//
 	vector<int> twoSum(vector<int>& nums, int target) {
-			vector<int> result(2);
-				int flag = 1;
-				for( int i = 0; i < nums.size() && flag; i ++ ) {
-					for( int j = i + 1; j < nums.size() && flag; j ++ ) {
-						if( nums[i] + nums[j] == target ) {
-							flag = 0;
-							result[0]=i;
-						}
-					}
+		vector<int> result(2);
+		for( int i = 0; i < nums.size(); i ++ ) {
+			for( int j = i + 1; j < nums.size(); j ++ ) {
+				if( nums[i] + nums[j] == target ) {
+					result[0] = i;
+					result[1] = j;
+					return result;
 				}
-			return result;
+			}
+		}
+	return result;
 	}
 };
+
 
 int main()
 {
 	vector<int> nums;
 	Solution solution;
 	int target;
+
+	//******data for testing******//
+	nums.push_back( 3 );
+	nums.push_back( 2 );
+	nums.push_back( 4 );
+	target = 6;
+
+	vector<int> result;
+	result = solution.twoSum( nums, target );
+	cout << "[" << result[0] << "," << result[1] << "]" << endl;
 
 	return 0;
 }
