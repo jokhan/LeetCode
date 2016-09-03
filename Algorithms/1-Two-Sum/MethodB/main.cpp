@@ -12,6 +12,7 @@ using namespace std;
 
 class Solution {
 public:
+	//*******使用Hash表来减少查询时间*********//
 	vector<int> twoSum( vector<int>& nums, int target ) {
 		vector<int> result(2);
 		map<int, int> mapNums;
@@ -29,7 +30,7 @@ public:
 				return result;
 			}
 		}
-		return result;
+		throw("No two sum solution!");
 	}
 };
 
@@ -42,7 +43,7 @@ int main()
 	//******data for testing******//
 	nums.push_back( 3 );
 	nums.push_back( 2 );
-	nums.push_back( 4 );
+	nums.push_back( 3 );
 	target = 6;
 
 	vector<int> result;
