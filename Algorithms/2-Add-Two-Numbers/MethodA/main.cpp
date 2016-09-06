@@ -8,7 +8,6 @@
 
 using namespace std;
 
-
 struct ListNode {
 	int val;
 	ListNode *next;
@@ -46,6 +45,7 @@ public:
 		}
 		return result;
 		*/
+		//**************链表元素逐个相加***********//
 		ListNode* result;
 		ListNode *pCur, *pNext;
 		int tmp = l1->val + l2->val;
