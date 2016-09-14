@@ -13,11 +13,14 @@ class Solution {
 public:
 	int maxArea( vector<int>& height ) {
 		int result = 0;
-		for( int i = 0; i < height.size(); i ++ ) {
-			for( int j = i + 1; j < height.size(); j ++ ) {
-				int area = min( height.at(i), height.at(j) ) * ( j - i );
-				if( area > result )
-					result = area;
+		int head = 0, tail = height.size() - 1;
+		while ( tail > head ) {
+			int area = ( tail - head ) * min( height.at( head ), height.at( tail ) );
+			result = max( area, result );
+			if( height.at( head ) < height.at( tail ) ) {
+				head ++;
+			} else {
+				tail --;
 			}
 		}
 		return result;
