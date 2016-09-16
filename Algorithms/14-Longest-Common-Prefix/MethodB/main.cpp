@@ -37,8 +37,10 @@ public:
 int main()
 {
 	Solution slt;
-	vector<string> a;
-	a.push_back( "" );
-	cout << slt.longestCommonPrefix( a ) << endl;
+	vector<string> strs;
+	strs.push_back( "abc" );
+	strs.push_back( "acv" );
+	strs.push_back( "adkf" );
+	cout << slt.longestCommonPrefix( strs ) << endl;
 	return 0;
 }
