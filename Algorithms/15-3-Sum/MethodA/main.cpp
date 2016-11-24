@@ -5,6 +5,7 @@
  */
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,17 +13,35 @@ class Solution {
 public:
 	vector<vector<int> > threeSum(vector<int>& nums) {
 		vector<vector<int> > result;
-		for( int i = 0; i < nums.size(); i ++ )
-			for( int j = i + 1; j < nums.size(); j ++ )
-				for( int k = j + 1; k < nums.size(); k ++ ) {
-					if( nums.at( i ) + nums.at( j ) == 0 - nums.at( k ) ) {
-						vector<int> triple;
-						triple.push_back( nums.at(i) );
-						triple.push_back( nums.at(j) );
-						triple.push_back( nums.at(k) );
-						result.push_back( triple );
-					}
+		sort(nums.begin(), nums.end());
+		for( int i = 0; i < nums.size(); i ++ ) {
+			if ( i > 0 && nums[i] == nums[i-1] ) {
+				// 防止重复
+				continue;
+			}
+			// two sum
+			int start = i + 1, end = nums.size() - 1;
+			int target = -nums[i];
+			while( start < end ) {
+				if ( start > i + 1 && nums[start - 1] == nums[start] ) {
+					// 防止重复
+					start ++;
+					continue;
 				}
+				if ( nums[start] + nums[end] < target ) {
+					start ++;
+				} else if ( nums[start] + nums[end] > target ) {
+					end --;
+				} else {
+					vector<int> triple;
+					triple.push_back( nums[i] );
+					triple.push_back( nums[start] );
+					triple.push_back( nums[end] );
+					result.push_back( triple );
+					start ++;
+				}
+			}
+		}
 		return result;
 	}
 };
